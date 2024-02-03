@@ -1,0 +1,31 @@
+@use '../abstracts/' as *;
+
+.error-message {
+  position: absolute;
+  width: 100%;
+  bottom: 48px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: hsl(0, 100%, 32%);
+  text-align: center;
+  padding: var(--size-50) var(--size-75);
+  font-weight: var(--fw-semibold);
+  border-radius: 5px;
+  z-index: 10;
+  opacity: 0.95;
+  font-size: 0.9rem;
+  box-shadow: 4px 4px 10px hsla(0, 0%, 0%, 15%);
+  color: $clr-neutral-900;
+
+  &::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 10px solid hsl(0, 100%, 32%);
+    transform: rotate(360deg) translateX(-50%);
+    z-index: 10;
+  }
+}

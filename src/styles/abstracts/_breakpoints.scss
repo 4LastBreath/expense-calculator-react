@@ -1,0 +1,24 @@
+$breakpoints: (
+    "phone-small":  350px,
+    "phone":        400px,
+    "phone-wide":   480px,
+    "tablet-small": 640px,
+    "tablet":       768px,
+    "tablet-wide":  1024px,
+    "desktop-small":1248px,
+    "desktop":      1360px,
+    "desktop-wide": 1440px
+);
+
+
+@mixin mq($width, $type: max) {
+  @if map_has_key($breakpoints, $width) {
+      $width: map_get($breakpoints, $width);
+      @if $type == max {
+          $width: $width - 1px;
+      }
+      @media only screen and (#{$type}-width: $width) {
+          @content;
+      }
+  }
+}

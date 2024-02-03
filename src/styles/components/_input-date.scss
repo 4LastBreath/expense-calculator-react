@@ -1,0 +1,25 @@
+@use '../abstracts/' as *;
+
+.input-date {
+  background-color: $clr-primary-300;
+  padding: $size-75;
+  color: $text-color;
+  border: none;
+  border-radius: 5px;
+  color-scheme: dark;
+  font-family: $ff-primary;
+  width: 115px;
+  font-size: 0.9rem;
+
+  &:focus-visible {
+    outline: 2px solid $clr-primary-600;
+  }
+}
+
+.input-date::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+
+html[data-theme='light'] .input-date {
+  color-scheme: light;
+}

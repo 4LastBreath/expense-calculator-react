@@ -1,0 +1,18 @@
+@use '../abstracts/' as *;
+
+
+.gap-25 {
+  gap: $size-25;
+}
+
+.gap-50 {
+  gap: $size-50;
+}
+
+.gap-75 {
+  gap: $size-75;
+}
+
+.gap-100 {
+  gap: $size-100;
+}

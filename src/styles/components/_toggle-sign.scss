@@ -1,0 +1,48 @@
+@use '../abstracts/' as *;
+
+.toggle-sign_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 34px;
+  width: 34px;
+  color: $clr-neutral-900;
+
+  input {
+    position: absolute;
+    opacity: 0;
+    height: 0;
+    width: 0;
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background-color: $clr-red;
+    cursor: pointer;
+    border-radius: 0px 5px 5px 0px;
+
+    &:hover {
+      filter: brightness(1.15);
+    }
+  }
+
+  .sign-plus {
+    display: none;
+  }
+
+  input:checked + label .sign-plus {
+    display: block;
+  }
+
+  input:checked + label .sign-minus {
+    display: none;
+  }
+
+  input:checked + label {
+    background-color: green;
+  }
+}

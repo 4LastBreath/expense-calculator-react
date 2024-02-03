@@ -1,0 +1,22 @@
+@use '../abstracts/' as *;
+
+::-webkit-scrollbar-button {
+  height: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $clr-primary-400;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: $clr-primary-600;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: $clr-primary-700;
+}
+
+::-webkit-scrollbar {
+  background-color: transparent;
+  width: 10px;
+}
