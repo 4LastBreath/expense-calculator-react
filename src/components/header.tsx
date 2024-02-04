@@ -82,7 +82,7 @@ const Header:React.FC<HeaderProps> = ({initialAmount, setInitialAmount, money, s
   return (
     <header className='flex justify-center align-center relative'>
 
-        <input type="text" className="input" onChange={handleInitialAmountChange} value={initialAmount} placeholder={translatedData.initialAmount + '...'} maxLength={13} pattern="[0-9]*" inputMode="numeric"/>
+        <input type="text" className="input" onChange={handleInitialAmountChange} value={initialAmount} placeholder={translatedData.initialAmount + '...'} maxLength={13} inputMode="numeric"/>
 
         <button onClick={handleShowSettings} className='button settings_button'>
           <FontAwesomeIcon icon={faGear}/>

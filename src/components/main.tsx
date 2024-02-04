@@ -109,6 +109,8 @@ const Main:React.FC<MainProps> = ({initialAmount, money}) => {
 
   const calculateRemainingAmount = (): number => {
     const initialAmountNumber = parseFloat(initialAmount);
+
+    console.log(initialAmountNumber, data)
   
     if (isNaN(initialAmountNumber)) {
       return 0;

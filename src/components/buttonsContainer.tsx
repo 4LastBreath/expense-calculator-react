@@ -61,7 +61,7 @@ const ButtonsContainer: React.FC<ButtonsContainerProps> = ({handleAddInput, hand
       <button className="button" onClick={handleShowModal}>{translatedData.exportPDF}</button>
       </div>
 
-      <div className="result">{result}{money}</div>
+      <div className="result">{result.toFixed(2)}{money}</div>
   </div>
   );
 };

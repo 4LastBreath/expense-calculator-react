@@ -25,7 +25,7 @@ const InputsContainer: React.FC<InputsContainerProps> = ({ data, onInputChange, 
                 </span>
             </label>
             <div className='flex'>
-              <input type="text" className="input input-expenses" placeholder="0" onChange={onInputChange(index)} value={item.value} maxLength={13} pattern="[0-9]*" inputMode="numeric"/>
+              <input type="text" className="input input-expenses" placeholder="0" onChange={onInputChange(index)} value={item.value} maxLength={13} inputMode="numeric"/>
               <div className="toggle-sign_container cursor-pointer">
                   <input type="checkbox" id={`input-sign-${index}`} className="input-sign" tabIndex={-1} onChange={handleSignToggle(index)}/>
                   <label htmlFor={`input-sign-${index}`}>
