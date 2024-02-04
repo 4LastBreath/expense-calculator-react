@@ -28,8 +28,18 @@ const Header:React.FC<HeaderProps> = ({initialAmount, setInitialAmount, money, s
 
   const handleInitialAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
+
+    const dotCount = value.split('.').length - 1;
+    const commaCount = value.split(',').length - 1;
+  
+    if (dotCount + commaCount > 1) {
+      return;
+    }
+
     const sanitizedValue = value.replace(/[^0-9.,]+/g, '').replace(/,/g, '.');
-    setInitialAmount(sanitizedValue)
+    const formattedValue = sanitizedValue.replace(/([.,]\d{2})\d+$/, '$1');
+
+    setInitialAmount(formattedValue)
   }
 
   const handleMoneyChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -71,8 +81,8 @@ const Header:React.FC<HeaderProps> = ({initialAmount, setInitialAmount, money, s
 
   return (
     <header className='flex justify-center align-center relative'>
-      
-        <input type="text" className="input" onChange={handleInitialAmountChange} value={initialAmount} placeholder={translatedData.initialAmount + '...'}/>
+
+        <input type="text" className="input" onChange={handleInitialAmountChange} value={initialAmount} placeholder={translatedData.initialAmount + '...'} maxLength={13} pattern="[0-9]*" inputMode="numeric"/>
 
         <button onClick={handleShowSettings} className='button settings_button'>
           <FontAwesomeIcon icon={faGear}/>

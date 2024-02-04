@@ -40,6 +40,7 @@
       gap: $size-200;
       width: 100%;
       height: calc(100vh - (68px + 164px));
+      height: calc(100svh - (68px + 164px));
       padding: $size-250 $size-100;
       overflow-x: auto;
 
@@ -129,6 +130,10 @@ html[data-theme='light'] {
   .main-page {
     header {
       border-bottom: 1px solid hsl(226, 39%, 30%);
+    }
+
+    .bottom {
+      border-top: 1px solid hsl(226, 39%, 30%);
     }
   }
 }

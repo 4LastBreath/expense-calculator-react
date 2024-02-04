@@ -49,7 +49,9 @@ const Main:React.FC<MainProps> = ({initialAmount, money}) => {
     }
 
     const sanitizedValue = inputValue.replace(/[^0-9.,]+/g, '').replace(/,/g, '.');
-    newData[index].value = sanitizedValue;
+    const formattedValue = sanitizedValue.replace(/([.,]\d{2})\d+$/, '$1');
+
+    newData[index].value = formattedValue;
     setData(newData);
   };
 
