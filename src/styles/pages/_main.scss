@@ -16,7 +16,7 @@
   }
 
   .header_settings {
-    bottom: -184px;
+    top: calc(100% + 1px);
     right: 0px;
     position: absolute;
     background-color: $clr-primary-50;
