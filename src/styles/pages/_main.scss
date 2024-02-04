@@ -28,13 +28,12 @@
     clip-path: circle(0% at 100% 0);
   }
 
-  .settings-icon {
-    color: $clr-primary-600;
-  }
-
-
   .header_settings.active {
     clip-path: circle(100%);
+  }
+
+  .settings-icon {
+    color: $clr-primary-600;
   }
 
   .inputs-container {
@@ -46,7 +45,6 @@
 
       .label {
         margin-left: $size-400;
-        // font-weight: $fw-medium;
       }
 
       .inputs_limit {
