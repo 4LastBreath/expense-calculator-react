@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/expenses-calculator/static/css/main.8305e95a.css",
+    "main.js": "/expenses-calculator/static/js/main.4265d497.js",
+    "static/js/498.a996c92e.chunk.js": "/expenses-calculator/static/js/498.a996c92e.chunk.js",
+    "static/js/703.85b1a09b.chunk.js": "/expenses-calculator/static/js/703.85b1a09b.chunk.js",
+    "static/js/379.3cd85341.chunk.js": "/expenses-calculator/static/js/379.3cd85341.chunk.js",
+    "static/js/787.a7765469.chunk.js": "/expenses-calculator/static/js/787.a7765469.chunk.js",
+    "index.html": "/expenses-calculator/index.html",
+    "main.8305e95a.css.map": "/expenses-calculator/static/css/main.8305e95a.css.map",
+    "main.4265d497.js.map": "/expenses-calculator/static/js/main.4265d497.js.map",
+    "498.a996c92e.chunk.js.map": "/expenses-calculator/static/js/498.a996c92e.chunk.js.map",
+    "703.85b1a09b.chunk.js.map": "/expenses-calculator/static/js/703.85b1a09b.chunk.js.map",
+    "379.3cd85341.chunk.js.map": "/expenses-calculator/static/js/379.3cd85341.chunk.js.map",
+    "787.a7765469.chunk.js.map": "/expenses-calculator/static/js/787.a7765469.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8305e95a.css",
+    "static/js/main.4265d497.js"
+  ]
+}
