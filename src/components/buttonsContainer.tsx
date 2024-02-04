@@ -37,7 +37,15 @@ const ButtonsContainer: React.FC<ButtonsContainerProps> = ({handleAddInput, hand
   const isInputChecked = data.some((item) => item.checked);
 
   return (
-    <div className='bottom'>
+    <div className='bottom relative'>
+
+      {isInputChecked && 
+            <div className='button-delete-cancel_container flex gap-50'>
+              <button className="button delete"onClick={handleDeleteSelected}>{translatedData.delete}</button>
+              <button className='button cancel' onClick={handleResetCheckbox}>{translatedData.cancel}</button>
+            </div>
+      }
+
       <form action="" className="form-add flex gap-50 mx-auto" onSubmit={handleAddInput}>
           <div className="add-input_container relative">
               <input type="text" className="input" placeholder={translatedData.addFieldPlaceholder} maxLength={20} value={addInputValue} onChange={handleAddInputChange} />
@@ -51,13 +59,6 @@ const ButtonsContainer: React.FC<ButtonsContainerProps> = ({handleAddInput, hand
       <div className='mx-auto flex gap-50'>
       <button className="button" onClick={calculateRemainingAmount}>{translatedData.calculate}</button>
       <button className="button" onClick={handleShowModal}>{translatedData.exportPDF}</button>
-
-      {isInputChecked && 
-            <div className='button-delete-cancel_container flex gap-50'>
-              <button className="button delete"onClick={handleDeleteSelected}>{translatedData.delete}</button>
-              <button className='button cancel' onClick={handleResetCheckbox}>{translatedData.cancel}</button>
-            </div>
-      }
       </div>
 
       <div className="result">{result}{money}</div>

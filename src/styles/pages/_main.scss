@@ -85,10 +85,10 @@
     background-color: $clr-primary-50;
     padding: $size-200;
     border-radius: 15px 15px 0 0;
-    position: fixed;
+    position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 164px;
+    bottom: calc(100% + 1px);
     margin-inline: auto;
 
     @include mq(phone-small) {
