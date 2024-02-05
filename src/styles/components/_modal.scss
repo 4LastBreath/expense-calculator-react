@@ -10,6 +10,7 @@
   background-color: rgba(0, 0, 0, 0.8);
   backdrop-filter: blur(2px);
   color: $clr-neutral-900;
+  z-index: 99;
 }
 
 .modal_center {
