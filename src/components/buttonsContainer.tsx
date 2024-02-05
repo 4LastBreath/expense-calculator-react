@@ -3,7 +3,7 @@ import { dataLanguages  } from '../languages/dataLanguages';
 import { useLanguage } from '../languages/LanguageContext';
 import { Item } from './main';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons';
 
 interface ButtonsContainerProps {
   handleAddInput: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -15,12 +15,13 @@ interface ButtonsContainerProps {
   setShowError: React.Dispatch<React.SetStateAction<boolean>>;
   setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
   handleResetCheckbox: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  handleResetValue: (e: React.MouseEvent<HTMLButtonElement>) => void;
   data: Item[];
   money: string;
   result: number;
 }
 
-const ButtonsContainer: React.FC<ButtonsContainerProps> = ({handleAddInput, handleDeleteSelected, calculateRemainingAmount, setAddInputValue, addInputValue, showError, setShowError, setShowModal, handleResetCheckbox, data, result, money}) => {
+const ButtonsContainer: React.FC<ButtonsContainerProps> = ({handleAddInput, handleDeleteSelected, handleResetValue, calculateRemainingAmount, setAddInputValue, addInputValue, showError, setShowError, setShowModal, handleResetCheckbox, data, result, money}) => {
 
   const {language} = useLanguage();
   const translatedData = dataLanguages[language];
@@ -41,8 +42,8 @@ const ButtonsContainer: React.FC<ButtonsContainerProps> = ({handleAddInput, hand
 
       {isInputChecked && 
             <div className='button-delete-cancel_container flex gap-50'>
-              <button className="button delete"onClick={handleDeleteSelected}>{translatedData.delete}</button>
-              <button className='button cancel' onClick={handleResetCheckbox}>{translatedData.cancel}</button>
+              <button className="button red-button"onClick={handleDeleteSelected}>{translatedData.delete}</button>
+              <button className='button grey-button' onClick={handleResetCheckbox}>{translatedData.cancel}</button>
             </div>
       }
 
@@ -59,6 +60,9 @@ const ButtonsContainer: React.FC<ButtonsContainerProps> = ({handleAddInput, hand
       <div className='mx-auto flex gap-50'>
       <button className="button" onClick={calculateRemainingAmount}>{translatedData.calculate}</button>
       <button className="button" onClick={handleShowModal}>{translatedData.exportPDF}</button>
+      <button className="button red-button" onClick={handleResetValue}>
+        <FontAwesomeIcon icon={faWandMagicSparkles} />
+      </button>
       </div>
 
       <div className="result">{result.toFixed(2)}{money}</div>

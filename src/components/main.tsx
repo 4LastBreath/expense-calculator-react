@@ -16,10 +16,11 @@ export interface Item {
 
 interface MainProps {
   initialAmount: string;
+  setInitialAmount: React.Dispatch<React.SetStateAction<string>>;
   money: string;
 }
 
-const Main:React.FC<MainProps> = ({initialAmount, money}) => {
+const Main:React.FC<MainProps> = ({initialAmount, setInitialAmount, money}) => {
 
   const {language} = useLanguage();
   const translatedData = dataLanguages[language];
@@ -72,6 +73,16 @@ const Main:React.FC<MainProps> = ({initialAmount, money}) => {
     setData(newData);
   };
 
+  const handleResetValue = (e:React.MouseEvent<HTMLButtonElement>) => {
+    const confirm = window.confirm(translatedData.confirmReset)
+    if (confirm) {
+      const resettedData = data.map(item => ({ ...item, value: '' }));
+      setData(resettedData)
+      setInitialAmount('')
+      setResult(0)
+    }
+  }
+
   const handleAddInput = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -109,8 +120,6 @@ const Main:React.FC<MainProps> = ({initialAmount, money}) => {
 
   const calculateRemainingAmount = (): number => {
     const initialAmountNumber = parseFloat(initialAmount);
-
-    console.log(initialAmountNumber, data)
   
     if (isNaN(initialAmountNumber)) {
       return 0;
@@ -133,10 +142,8 @@ const Main:React.FC<MainProps> = ({initialAmount, money}) => {
 
   useEffect(() => {
     const updateData = data.map((item, index) => {
-      const name = item.initialName;
-
-      if (index < 3) {
-        const translatedName = translatedData[name];
+      if (index < 3 && ['rent', 'gas', 'electricity'].includes(item.initialName)) {
+        const translatedName = translatedData[item.initialName];
         return {
           ...item,
           name: translatedName,
@@ -145,7 +152,7 @@ const Main:React.FC<MainProps> = ({initialAmount, money}) => {
       return item;
     });
   
-    setData(updateData);
+    setData([...updateData]);
   }, [language, translatedData]);
 
   return (
@@ -161,6 +168,7 @@ const Main:React.FC<MainProps> = ({initialAmount, money}) => {
           setShowError={setShowError}
           setShowModal={setShowModal}
           handleResetCheckbox={handleResetCheckbox}
+          handleResetValue={handleResetValue}
           data={data}
           money={money}
           result={result}
@@ -168,7 +176,6 @@ const Main:React.FC<MainProps> = ({initialAmount, money}) => {
         {showModal && 
             <ModalExportPDF data={data} initialAmount={initialAmount} money={money} calculateRemainingAmount={calculateRemainingAmount} setShowModal={setShowModal}/>
         }
-        
     </main>
   );
 };

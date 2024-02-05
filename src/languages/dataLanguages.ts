@@ -4,6 +4,8 @@ export type DataLanguagesType = {
 
 export const dataLanguages: DataLanguagesType = {
   en: {
+    title: "Expenses calculator",
+    confirmReset: "Are you sure you want to reset?",
     rent: "Rent",
     gas: "Gas",
     electricity: "Electricity",
@@ -26,6 +28,8 @@ export const dataLanguages: DataLanguagesType = {
     error: "This field must not be empty",
   },
   fr: {
+    title: "Calculateur de dépenses",
+    confirmReset: "Êtes-vous sûr de vouloir réinitialiser?",
     rent: "Loyer",
     gas: "Gaz",
     electricity: "Électricité",
@@ -48,6 +52,8 @@ export const dataLanguages: DataLanguagesType = {
     error: "Ce champ ne doit pas être vide",
   },
   de: {
+    title: "Spesenrechner",
+    confirmReset: "Möchten Sie wirklich zurücksetzen?",
     rent: "Miete",
     gas: "Gas",
     electricity: "Strom",
@@ -70,6 +76,8 @@ export const dataLanguages: DataLanguagesType = {
     error: "Dieses Feld darf nicht leer sein",
   },
   it: {
+      title: "Calcolatore delle spese",
+      confirmReset: "Vuoi davvero resettare?",
       rent: "Affitto",
       gas: "Gas",
       electricity: "Elettricità",
@@ -92,7 +100,9 @@ export const dataLanguages: DataLanguagesType = {
       error: "Questo campo non deve essere vuoto",
   },
   es: {
-      rent: "Alquiler",
+      title: "Calculadora de gastos",
+      confirmReset: "¿Realmente quieres restablecer?",
+      reset: "Reinicializar",
       gas: "Gas",
       electricity: "Electricidad",
       initialAmount: "Cantidad Inicial",
@@ -114,6 +124,8 @@ export const dataLanguages: DataLanguagesType = {
       error: "Este campo no debe estar vacío",
   },
   pt: {
+      title: "Calculadora de despesas",
+      confirmReset: "Você realmente deseja redefinir?",
       rent: "Aluguel",
       gas: "Gás",
       electricity: "Eletricidade",
@@ -136,6 +148,8 @@ export const dataLanguages: DataLanguagesType = {
       error: "Este campo não deve ficar vazio",
   },
   nl: {
+      title: "Kostencalculator",
+      confirmReset: "Wil je echt resetten?",
       rent: "Huur",
       gas: "Gas",
       electricity: "Elektriciteit",
