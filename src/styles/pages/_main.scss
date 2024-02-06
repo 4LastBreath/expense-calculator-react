@@ -3,7 +3,7 @@
 .main-page {
 
   header {
-    padding: $size-200 $size-100;
+    padding: $size-200;
     box-shadow: 0 5px 10px hsla(0, 0%, 0%, 15%);
     background-color: $clr-primary-50;
     border-bottom: 1px solid $clr-primary-300;
@@ -12,7 +12,6 @@
 
     @include mq(phone) {
       gap: $size-200;
-      padding: $size-200;
       justify-content: space-around;
     }
   }

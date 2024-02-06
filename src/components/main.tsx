@@ -24,9 +24,7 @@ const Main:React.FC<MainProps> = ({initialAmount, setInitialAmount, money}) => {
 
   const {language} = useLanguage();
   const translatedData = dataLanguages[language];
-  const [showError, setShowError] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [addInputValue, setAddInputValue] = useState('');
 
   const initialData: Item[] = [
     { initialName: 'rent', name: 'Rent', value: '', sign: '-',  checked: false },
@@ -62,11 +60,6 @@ const Main:React.FC<MainProps> = ({initialAmount, setInitialAmount, money}) => {
     setData(newData);
   };
 
-  const handleResetCheckbox = (e: React.MouseEvent<HTMLButtonElement>) => {
-    const newData = data.map(item => ({ ...item, checked: false }));
-    setData(newData);
-  };
-
   const handleSignToggle = (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
     const newData = [...data];
     newData[index].sign = newData[index].sign === '+' ? '-' : '+';
@@ -82,41 +75,6 @@ const Main:React.FC<MainProps> = ({initialAmount, setInitialAmount, money}) => {
       setResult(0)
     }
   }
-
-  const handleAddInput = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const inputValue = addInputValue;
-
-    if (data.length > 24) {
-      return
-    }
-
-    if (inputValue.trim() !== '') {
-      setData([...data, {initialName: inputValue.toLocaleLowerCase(), name: inputValue, value: '', sign: '-', checked: false }]);
-      setAddInputValue('');
-      setShowError(false);
-    } else {
-      setShowError(true)
-    }
-    
-  };
-
-  useEffect(() => {
-    let resetErrorTimeout: NodeJS.Timeout;
-
-    if(showError === true) {
-        resetErrorTimeout = setInterval(() => {
-            setShowError(false)
-        }, 5000);
-    }
-    return () => clearInterval(resetErrorTimeout)
-  }, [showError])
-
-  const handleDeleteSelected = () => {
-    const newData = data.filter((item) => !item.checked);
-    setData(newData);
-  };
 
   const calculateRemainingAmount = (): number => {
     const initialAmountNumber = parseFloat(initialAmount);
@@ -158,18 +116,12 @@ const Main:React.FC<MainProps> = ({initialAmount, setInitialAmount, money}) => {
   return (
     <main>
         <InputsContainer  data={data} onInputChange={handleInputChange} onCheckboxChange={handleCheckboxChange} handleSignToggle={handleSignToggle}/>
-        <ButtonsContainer 
-          handleAddInput={handleAddInput} 
-          handleDeleteSelected={handleDeleteSelected} 
+        <ButtonsContainer
           calculateRemainingAmount={calculateRemainingAmount} 
-          addInputValue={addInputValue} 
-          setAddInputValue={setAddInputValue}
-          showError={showError}
-          setShowError={setShowError}
           setShowModal={setShowModal}
-          handleResetCheckbox={handleResetCheckbox}
           handleResetValue={handleResetValue}
           data={data}
+          setData={setData}
           money={money}
           result={result}
         />

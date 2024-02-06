@@ -12,7 +12,7 @@ const MainPage = () => {
 
   useEffect(() => {
     document.title = translatedData.title
-  }, [language]);
+  }, [language, translatedData]);
 
   const [initialAmount, setInitialAmount] = useState('');
   const [money, setMoney] = useState('$');

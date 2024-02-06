@@ -118,7 +118,7 @@ const ModalExportPDF: React.FC<ModalExportPDFProps> = ({data, initialAmount, mon
     (pdf as any).autoTable({
       startY: (pdf as any).previousAutoTable.finalY + 10,
       head: [[translatedData.remainingAmount]],
-      body: [[total + money]],
+      body: [[total.toFixed(2) + money]],
       styles: { cellPadding: 5, halign: 'center' },
       columnStyles: { 0: { halign: 'center' } },
     });

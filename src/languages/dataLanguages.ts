@@ -102,7 +102,7 @@ export const dataLanguages: DataLanguagesType = {
   es: {
       title: "Calculadora de gastos",
       confirmReset: "¿Realmente quieres restablecer?",
-      reset: "Reinicializar",
+      rent: "Alquilar",
       gas: "Gas",
       electricity: "Electricidad",
       initialAmount: "Cantidad Inicial",

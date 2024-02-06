@@ -62,7 +62,7 @@ const Header:React.FC<HeaderProps> = ({initialAmount, setInitialAmount, money, s
     if (savedLanguage) {
       setLanguage(savedLanguage)
     }
-  }, [])
+  }, [setLanguage, setMoney])
 
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {

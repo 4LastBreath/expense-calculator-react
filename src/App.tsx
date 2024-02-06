@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import MainPage from './pages/mainPage';
 import { LanguageProvider } from './languages/LanguageContext';
 
