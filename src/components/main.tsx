@@ -149,7 +149,7 @@ const Main:React.FC<MainProps> = ({initialAmount, setInitialAmount, money, selec
       })) as Item[];
   
       setData(updatedData);
-    } else {
+    } else if (!savedNames && selectedProfil === 'default') {
       const translatedInitialData = initialData.map((item) => {
           const translatedName = translatedData[item.initialName];
           return {
@@ -158,6 +158,8 @@ const Main:React.FC<MainProps> = ({initialAmount, setInitialAmount, money, selec
           };
       });
       setData(translatedInitialData);
+    } else {
+      setData([])
     }
   }, [selectedProfil]);
 

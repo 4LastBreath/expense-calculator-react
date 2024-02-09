@@ -10,7 +10,7 @@ const MainPage = () => {
   const {language} = useLanguage();
   const translatedData = dataLanguages[language];
 
-  const [selectedProfil, setSelectedProfil] = useState('')
+  const [selectedProfil, setSelectedProfil] = useState('default')
 
   const handleSelectProfil = (e:React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedProfil(e.target.value)
