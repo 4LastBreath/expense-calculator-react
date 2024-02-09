@@ -7,7 +7,7 @@ interface InputsContainerProps {
   data: Item[];
   onInputChange: (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => void;
   onCheckboxChange: (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleSignToggle: (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleSignToggle: (index: number) => () => void;
 }
 
 const InputsContainer: React.FC<InputsContainerProps> = ({ data, onInputChange, onCheckboxChange, handleSignToggle }) => {

@@ -4,6 +4,7 @@ import ButtonsContainer from './buttonsContainer';
 import ModalExportPDF from './modalExportPDF';
 import { dataLanguages  } from '../languages/dataLanguages';
 import { useLanguage } from '../languages/LanguageContext';
+import ModalSaveProfil from './modalSaveProfil';
 
 
 export interface Item {
@@ -18,23 +19,28 @@ interface MainProps {
   initialAmount: string;
   setInitialAmount: React.Dispatch<React.SetStateAction<string>>;
   money: string;
+  selectedProfil: string;
+  setSelectedProfil: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Main:React.FC<MainProps> = ({initialAmount, setInitialAmount, money}) => {
+const Main:React.FC<MainProps> = ({initialAmount, setInitialAmount, money, selectedProfil, setSelectedProfil}) => {
 
   const {language} = useLanguage();
   const translatedData = dataLanguages[language];
-  const [showModal, setShowModal] = useState(false);
+  const [showModalPDF, setShowModalPDF] = useState(false);
+  const [showModalSave, setShowModalSave] = useState(false);
 
   const initialData: Item[] = [
     { initialName: 'rent', name: 'Rent', value: '', sign: '-',  checked: false },
+    { initialName: 'water', name: 'Water', value: '', sign: '-',  checked: false },
     { initialName: 'gas', name: 'Gas', value: '', sign: '-', checked: false },
     { initialName: 'electricity', name: 'Electricity', value: '', sign: '-',  checked: false },
   ];
 
-  const [data, setData] = useState<Item[]>(initialData);
+  const [data, setData] = useState<Item[]>([]);
 
   const [result, setResult] = useState(0);
+  const [saveChosenProfil, setSaveChosenProfil] = useState('1')
 
   const handleInputChange = (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
     const newData = [...data];
@@ -60,13 +66,13 @@ const Main:React.FC<MainProps> = ({initialAmount, setInitialAmount, money}) => {
     setData(newData);
   };
 
-  const handleSignToggle = (index: number) => (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleSignToggle = (index: number) => () => {
     const newData = [...data];
     newData[index].sign = newData[index].sign === '+' ? '-' : '+';
     setData(newData);
   };
 
-  const handleResetValue = (e:React.MouseEvent<HTMLButtonElement>) => {
+  const handleResetValue = () => {
     const confirm = window.confirm(translatedData.confirmReset)
     if (confirm) {
       const resettedData = data.map(item => ({ ...item, value: '' }));
@@ -76,6 +82,13 @@ const Main:React.FC<MainProps> = ({initialAmount, setInitialAmount, money}) => {
     }
   }
 
+  const handleSaveNames = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const savedNames = data.map(item => item.name);
+    localStorage.setItem(`savedNames-${saveChosenProfil}`, JSON.stringify(savedNames));
+    setShowModalSave(false)
+  };
+
+  // Calcul the final amount
   const calculateRemainingAmount = (): number => {
     const initialAmountNumber = parseFloat(initialAmount);
   
@@ -98,9 +111,10 @@ const Main:React.FC<MainProps> = ({initialAmount, setInitialAmount, money}) => {
     }, initialAmountNumber);
   };
 
+  // Translate the initial data
   useEffect(() => {
     const updateData = data.map((item, index) => {
-      if (index < 3 && ['rent', 'gas', 'electricity'].includes(item.initialName)) {
+      if (index < 4 && ['rent', 'water', 'gas', 'electricity'].includes(item.initialName)) {
         const translatedName = translatedData[item.initialName];
         return {
           ...item,
@@ -113,21 +127,61 @@ const Main:React.FC<MainProps> = ({initialAmount, setInitialAmount, money}) => {
     setData([...updateData]);
   }, [language, translatedData]);
 
+  // Load saved profil
+  useEffect(() => {
+    const savedNamesKey = `savedNames-${selectedProfil}`;
+    const savedNames = localStorage.getItem(savedNamesKey);
+    const savedProfil = localStorage.getItem('savedProfil');
+  
+    if (savedProfil) {
+      setSelectedProfil(savedProfil);
+    }
+  
+    if (savedNames) {
+      const parsedNames: string[] = JSON.parse(savedNames);
+  
+      const updatedData = parsedNames.map((name) => ({
+        initialName: name.toLocaleLowerCase(),
+        name: name,
+        value: '',
+        sign: '-',
+        checked: false,
+      })) as Item[];
+  
+      setData(updatedData);
+    } else {
+      const translatedInitialData = initialData.map((item) => {
+          const translatedName = translatedData[item.initialName];
+          return {
+            ...item,
+            name: translatedName,
+          };
+      });
+      setData(translatedInitialData);
+    }
+  }, [selectedProfil]);
+
   return (
     <main>
         <InputsContainer  data={data} onInputChange={handleInputChange} onCheckboxChange={handleCheckboxChange} handleSignToggle={handleSignToggle}/>
         <ButtonsContainer
           calculateRemainingAmount={calculateRemainingAmount} 
-          setShowModal={setShowModal}
+          setShowModalPDF={setShowModalPDF}
+          setShowModalSave={setShowModalSave}
           handleResetValue={handleResetValue}
           data={data}
           setData={setData}
           money={money}
           result={result}
         />
-        {showModal && 
-            <ModalExportPDF data={data} initialAmount={initialAmount} money={money} calculateRemainingAmount={calculateRemainingAmount} setShowModal={setShowModal}/>
+        {showModalPDF && 
+            <ModalExportPDF data={data} initialAmount={initialAmount} money={money} calculateRemainingAmount={calculateRemainingAmount} setShowModal={setShowModalPDF}/>
         }
+        {
+          showModalSave && 
+          <ModalSaveProfil setShowModalSave={setShowModalSave} setSaveChosenProfil={setSaveChosenProfil} saveChosenProfil={saveChosenProfil} handleSaveNames={handleSaveNames}/>
+        }
+
     </main>
   );
 };

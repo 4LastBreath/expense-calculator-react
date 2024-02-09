@@ -10,6 +10,13 @@ const MainPage = () => {
   const {language} = useLanguage();
   const translatedData = dataLanguages[language];
 
+  const [selectedProfil, setSelectedProfil] = useState('')
+
+  const handleSelectProfil = (e:React.ChangeEvent<HTMLSelectElement>) => {
+    setSelectedProfil(e.target.value)
+    localStorage.setItem('savedProfil', e.target.value)
+  }
+
   useEffect(() => {
     document.title = translatedData.title
   }, [language, translatedData]);
@@ -20,8 +27,8 @@ const MainPage = () => {
 
   return (
     <div className='main-page'>
-      <Header initialAmount={initialAmount} setInitialAmount={setInitialAmount} money={money} setMoney={setMoney}/>
-      <Main initialAmount={initialAmount} setInitialAmount={setInitialAmount} money={money}/>
+      <Header initialAmount={initialAmount} setInitialAmount={setInitialAmount} money={money} setMoney={setMoney} selectedProfil={selectedProfil} handleSelectProfil={handleSelectProfil}/>
+      <Main initialAmount={initialAmount} setInitialAmount={setInitialAmount} money={money} selectedProfil={selectedProfil} setSelectedProfil={setSelectedProfil}/>
     </div>
   );
 };

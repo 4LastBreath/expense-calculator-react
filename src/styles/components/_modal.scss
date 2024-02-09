@@ -20,3 +20,12 @@
   border-radius: 15px;
   border: 2px solid $clr-primary-600;
 }
+
+html[data-theme='light'] {
+  .modal {
+    background-color: rgba(0, 0, 0, 0.86);
+  }
+  .modal_center {
+    border: 2px solid $clr-primary-700;
+  }
+}

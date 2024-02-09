@@ -3,7 +3,7 @@ import ToggleTheme from './toggleTheme';
 import { dataLanguages  } from '../languages/dataLanguages';
 import { useLanguage } from '../languages/LanguageContext';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGear, faGlobe, faCoins } from '@fortawesome/free-solid-svg-icons';
+import { faGear, faGlobe, faCoins, faCopy } from '@fortawesome/free-solid-svg-icons';
 import { allLanguagesArray } from '../utils/languages';
 
 interface HeaderProps {
@@ -11,9 +11,11 @@ interface HeaderProps {
   setInitialAmount: React.Dispatch<React.SetStateAction<string>>;
   money: string;
   setMoney: React.Dispatch<React.SetStateAction<string>>;
+  selectedProfil: string;
+  handleSelectProfil: (e: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
-const Header:React.FC<HeaderProps> = ({initialAmount, setInitialAmount, money, setMoney}) => {
+const Header:React.FC<HeaderProps> = ({initialAmount, setInitialAmount, money, setMoney, selectedProfil, handleSelectProfil}) => {
 
   const { language, setLanguage } = useLanguage();
   const translatedData = dataLanguages[language];
@@ -110,6 +112,15 @@ const Header:React.FC<HeaderProps> = ({initialAmount, setInitialAmount, money, s
                   <option value="€">€</option>
                   <option value="£">£</option>
               </select>
+            </div>
+
+            <div className='flex gap-100 align-center'>
+              <FontAwesomeIcon icon={faCopy} className='settings-icon'/>
+                <select className='dropdown' onChange={handleSelectProfil} value={selectedProfil}>
+                  <option value="default">{translatedData.default}</option>
+                  <option value="1">{translatedData.profile1}</option>
+                  <option value="2">{translatedData.profile2}</option>
+                </select>
             </div>
 
             <ToggleTheme />

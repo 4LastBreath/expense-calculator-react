@@ -2,6 +2,8 @@
 
 .main-page {
 
+  // Header & Header_settings
+
   header {
     padding: $size-200;
     box-shadow: 0 5px 10px hsla(0, 0%, 0%, 15%);
@@ -38,7 +40,7 @@
     right: 0px;
     position: absolute;
     background-color: $clr-primary-50;
-    padding: $size-200 $size-400;
+    padding: $size-200 $size-300;
     gap: $size-200;
     border-radius: 0 0 0 15px;
     box-shadow: 0 5px 10px hsla(0, 0%, 0%, 15%);
@@ -53,6 +55,19 @@
   .settings-icon {
     color: $clr-primary-600;
   }
+
+  .button.settings_button {
+    position: absolute;
+    right: 20px;
+    font-size: 1rem;
+
+    @include mq(phone) {
+      position: relative;
+      right: 0;
+    }
+  }
+
+  // Inputs container
 
   .inputs-container {
       gap: $size-200;
@@ -72,15 +87,18 @@
       }
   }
 
-  .button.settings_button {
-    position: absolute;
-    right: 20px;
-    font-size: 1rem;
+  // Bottom & Buttons
 
-    @include mq(phone) {
-      position: relative;
-      right: 0;
-    }
+  .bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 164px;
+    padding: $size-200 $size-150;
+    box-shadow: 0 -5px 10px hsla(0, 0%, 0%, 15%);
+    background-color: $clr-primary-50;
+    border-top: 1px solid $clr-primary-300;
   }
 
   .button.add-button {
@@ -114,23 +132,49 @@
     }
   }
 
-  .bottom {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    height: 164px;
-    padding: $size-200 $size-150;
-    box-shadow: 0 -5px 10px hsla(0, 0%, 0%, 15%);
-    background-color: $clr-primary-50;
-    border-top: 1px solid $clr-primary-300;
-  }
-
   .result {
     font-size: 1.1rem;
     color: hsl(180, 100%, 40%);
     font-weight: $fw-semibold;
   }
+
+  // Modal save
+
+  .modal-save_radio {
+    label {
+      width: 100%;
+      height: 100%;
+      border: 2px solid hsla(0, 0%, 100%, 0.1);
+      padding: $size-100;
+      border-radius: 15px;
+
+      &:hover {
+        border: 2px solid hsla(0, 0%, 100%, 0.3);
+        background-color: $clr-primary-100;
+      }
+    }
+
+    input:checked + label {
+      border: 2px solid hsl(180, 100%, 35%);
+      background-color: hsla(180, 100%, 20%, 0.3)
+    }
+  }
+
+  .profil_name {
+    font-weight: $fw-medium;
+    letter-spacing: 0.5px;
+  }
+
+  .profil_infos {
+    width: 210px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-style: italic;
+    opacity: 0.7;
+    white-space: nowrap;
+  }
+
+  // Modal PDF
 
   .input-date_container {
     border: 2px solid hsla(0, 0%, 100%, 0.1);
@@ -143,6 +187,9 @@
   }
 }
 
+
+// Light Theme
+
 html[data-theme='light'] {
   .main-page {
     header {
@@ -151,6 +198,20 @@ html[data-theme='light'] {
 
     .bottom {
       border-top: 1px solid hsl(226, 39%, 30%);
+    }
+
+    .modal-save_radio {
+      label {
+        &:hover {
+          border: 2px solid hsla(0, 0%, 100%, 0.3);
+          background-color: hsl(226, 39%, 23%);
+        }
+      }
+  
+      input:checked + label {
+        border: 2px solid hsl(180, 100%, 35%);
+        background-color: hsla(180, 100%, 20%, 0.3)
+      }
     }
   }
 }

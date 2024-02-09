@@ -16,7 +16,7 @@
   --clr-red: hsl(0, 100%, 28%);
   --text-color: var(--clr-neutral-900);
 
-  --placeholder-color: hsla(0, 0%, 100%, 0.20);
+  --placeholder-color: hsla(0, 0%, 100%, 0.2);
 }
 
 html[data-theme='light'] {
@@ -30,7 +30,7 @@ html[data-theme='light'] {
   --clr-primary-700: hsl(240, 15%, 60%);
 
   --text-color: var(--clr-neutral-100);
-  --placeholder-color: hsla(0, 0%, 20%, 0.4);
+  --placeholder-color: hsla(0, 0%, 12%, 0.45);
 }
 
 

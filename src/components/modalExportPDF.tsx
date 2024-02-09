@@ -85,7 +85,7 @@ const ModalExportPDF: React.FC<ModalExportPDFProps> = ({data, initialAmount, mon
       }
     ]);
 
-    const total = calculateRemainingAmount();
+    const totalDisplay = calculateRemainingAmount() % 1 !== 0 ? calculateRemainingAmount().toFixed(2) : calculateRemainingAmount()
 
     const headers = [translatedData.pdfNames, translatedData.pdfExpenses];
 
@@ -118,7 +118,7 @@ const ModalExportPDF: React.FC<ModalExportPDFProps> = ({data, initialAmount, mon
     (pdf as any).autoTable({
       startY: (pdf as any).previousAutoTable.finalY + 10,
       head: [[translatedData.remainingAmount]],
-      body: [[total.toFixed(2) + money]],
+      body: [[totalDisplay + money]],
       styles: { cellPadding: 5, halign: 'center' },
       columnStyles: { 0: { halign: 'center' } },
     });
